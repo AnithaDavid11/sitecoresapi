@@ -1,0 +1,15 @@
+{
+ 			 "defaults": "DCHIntegrationsSearchConfiguration",
+ 			 "culture": "en-US",
+ 			 "skip": 0,
+  			"take": 20,
+  			"query": "",
+  			"filters": [],
+  			"fulltext": [],
+ 			 "view": "grid",
+ 		 	"sorting": {
+    				"field": "modifiedon",
+    				"asc": false
+  			    	}
+}
+

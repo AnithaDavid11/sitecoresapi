@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="sitecoresapi-test-suite.xml" />
+	<munit:test name="sitecoresapi-test-suite-sitecoresapi-mainTest" doc:id="858471d0-f89a-481e-9772-1a0393d8c834" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="08bca834-9be9-4ba7-9ebc-405cf6451f0e" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sitecoresapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to sitecoresapi-main" doc:id="bfaad946-efed-4a9b-9bd7-fbcca9e9dce6" name="sitecoresapi-main"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="sitecoresapi-test-suite-sitecoresapi-consoleTest" doc:id="33b1ddc8-8e73-4231-9f7e-ed63695f6d43" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="b25c900e-2d34-49ca-9deb-820d069ff77b" processor="apikit:console">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sitecoresapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to sitecoresapi-console" doc:id="9d20edbe-ab80-45da-a1ad-481496b9e6f7" name="sitecoresapi-console"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="sitecoresapi-test-suite-put:\updatedeletedasset:application\json:sitecoresapi-configTest" doc:id="dd99654b-6ba2-4083-9249-60b2ab974399" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c20b2ec3-8ce7-43f4-9008-4909ceec27bf" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Flow Reference" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="dd4d58c0-f907-414e-b2cc-615361a257b8" attributeName="doc:id" />
+					<munit-tools:with-attribute whereValue="updatedeletedasset" attributeName="name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to put:\updatedeletedasset:application\json:sitecoresapi-config" doc:id="c548a56f-a2d5-4c25-9af3-79b92dc7f2f9" name="put:\updatedeletedasset:application\json:sitecoresapi-config"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="sitecoresapi-test-suite-put:\updatelinks\(assetId):application\json:sitecoresapi-configTest" doc:id="38fca01f-8183-44f8-96a8-7c9dd76748b2" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="815ab062-29ef-4566-9dfb-4df573a55b84" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Flow Reference" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="1e38c4bc-d781-41cf-a155-4581d7b4c582" attributeName="doc:id" />
+					<munit-tools:with-attribute whereValue="updatepubliclinks" attributeName="name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to put:\updatelinks\(assetId):application\json:sitecoresapi-config" doc:id="4c306c91-5974-4642-88e2-60fbb311625d" name="put:\updatelinks\(assetId):application\json:sitecoresapi-config"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="sitecoresapi-test-suite-get:\getasset:sitecoresapi-configTest" doc:id="753db68f-ab6f-4716-a845-629df92b2e72" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="474255c1-e610-4cbe-96ec-fd3a3bdab9e3" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Flow Reference" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3ee3c466-f999-42f0-b25e-0a53c3a12654" attributeName="doc:id" />
+					<munit-tools:with-attribute whereValue="getasset" attributeName="name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\getasset:sitecoresapi-config" doc:id="c9af5db9-46d5-4590-b961-51aa9834c06f" name="get:\getasset:sitecoresapi-config"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="sitecoresapi-test-suite-post:\getapprovedasset:application\json:sitecoresapi-configTest" doc:id="285652ae-0ecb-44c4-9445-0ac660f7863f" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="6e96c6d9-3164-429c-8b16-11c0ceb559f4" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Flow Reference" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="1ebe062c-2fbf-44da-baac-c99b4819147d" attributeName="doc:id" />
+					<munit-tools:with-attribute whereValue="getapprovedasset" attributeName="name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to post:\getapprovedasset:application\json:sitecoresapi-config" doc:id="e37eaa5f-9cf2-4fde-a884-daf21aaa1649" name="post:\getapprovedasset:application\json:sitecoresapi-config"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="sitecoresapi-test-suite-sitecoresapi-mainTest1" doc:id="4609d455-9e2c-43b3-b98b-9ab84b367baa" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="bdfccc3c-762b-405d-918d-aa92e2efe5e2" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="sitecoresapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<try doc:name="Try" doc:id="53809b7e-c5a5-46ed-a118-97a15d351069" >
+				<flow-ref doc:name="Flow-ref to sitecoresapi-main" doc:id="d4fa3a81-ac2c-4cd6-ba37-31e8b462e30b" name="sitecoresapi-main" />
+				<error-handler >
+					<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="5bccab4d-7eb5-4728-ae38-bc9312f79806" >
+						<logger level="INFO" doc:name="Logger" doc:id="e6eee737-a9c0-4021-81f2-fb4bda71d6c9" message="Continue"/>
+					</on-error-continue>
+				</error-handler>
+			</try>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="72e067fb-cce7-434d-82eb-5ea08b5f05ee" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+</mule>

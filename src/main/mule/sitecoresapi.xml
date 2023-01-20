@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+   
+    <flow name="put:\updatedeletedasset:application\json:sitecoresapi-config">
+		<flow-ref doc:name="Flow Reference" doc:id="dd4d58c0-f907-414e-b2cc-615361a257b8" name="updatedeletedasset"/>
+    </flow>
+    <flow name="put:\updatelinks\(assetId):application\json:sitecoresapi-config">
+		<flow-ref doc:name="Flow Reference" doc:id="1e38c4bc-d781-41cf-a155-4581d7b4c582" name="updatepubliclinks"/>
+    </flow>
+    <flow name="get:\getasset:sitecoresapi-config">
+		<flow-ref doc:name="Flow Reference" doc:id="3ee3c466-f999-42f0-b25e-0a53c3a12654" name="getasset"/>
+    </flow>
+    <flow name="post:\getapprovedasset:application\json:sitecoresapi-config">
+		<flow-ref doc:name="Flow Reference" doc:id="1ebe062c-2fbf-44da-baac-c99b4819147d" name="getapprovedasset"/>
+    </flow>
+</mule>

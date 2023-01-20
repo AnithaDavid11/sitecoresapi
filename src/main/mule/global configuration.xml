@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="1f2d67e3-6bc7-42eb-be75-46f1673ba984" >
+		<http:request-connection host="sitecore-dch-mock-api.us-e1.cloudhub.io" />
+	</http:request-config>
+	
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c4306133-690a-4042-a96b-3d0a37aeeee4" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<apikit:config name="sitecoresapi-config" api="sitecoresapi.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+  
+	 <flow name="sitecoresapi-main">
+        <http:listener config-ref="HTTP_Listener_config" path="/api/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="sitecoresapi-config"/>
+        <error-handler>
+			<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="1dda6239-4257-4798-aca0-0e1a555b2860" type="ANY">
+				<logger level="INFO" doc:name="Logger" doc:id="a739b2cd-46f6-4c80-a7a0-733415160863" message="#[error.detailedDescription]"/>
+			</on-error-continue>
+        </error-handler>
+    </flow>
+    <flow name="sitecoresapi-console">
+        <http:listener config-ref="HTTP_Listener_config" path="/console/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+     <apikit:console config-ref="sitecoresapi-config" />   
+    </flow>
+	
+	<error-handler name="global_configurationError_Handler" doc:id="4e2c9aa8-e0d7-4955-8664-7b8863b1f238" >
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="54ae215e-c4ca-4c14-9dbb-a592094af018" >
+			<logger level="INFO" doc:name="Logger" doc:id="875c54e4-1948-49cb-b6c9-fbbb074b7dea" message="#[error.detailedDescription]"/>
+		</on-error-continue>
+	</error-handler>
+</mule>

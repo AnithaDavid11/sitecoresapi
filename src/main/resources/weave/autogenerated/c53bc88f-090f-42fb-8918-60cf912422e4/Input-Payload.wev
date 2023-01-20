@@ -1,0 +1,19 @@
+%dw 2.0
+
+type auto_c53bc88f_090f_42fb_8918_60cf912422e4_Input_Payload = {
+  take: Number, 
+  view: String, 
+  defaults: String, 
+  culture: String, 
+  query: String, 
+  sorting: {
+    asc: Boolean, 
+    field: String, 
+    _?: Any
+  }, 
+  fulltext: Array<Any>, 
+  skip: Number, 
+  filters: Array<Any>, 
+  _?: Any
+}
+
